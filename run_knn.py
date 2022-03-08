@@ -20,11 +20,24 @@ print(target)
 print(data)
 
 
-machine = KNeighborsRegressor(n_neighbors=3)
-r2_scores = kfold_template.run_kfold(data, target, 4, machine, 0, 0)
-r2_scores = r2_scores[0]
-r2_score = numpy.mean(r2_scores)
-print(r2_score)
+# machine = KNeighborsRegressor(n_neighbors=3)
+# r2_scores = kfold_template.run_kfold(data, target, 4, machine, 0, 0)
+# r2_scores = r2_scores[0]
+# r2_score = numpy.mean(r2_scores)
+# print(r2_score)
 
 
+for i in numpy.arange(1,60):
+	machine = KNeighborsRegressor(n_neighbors=i)
+	r2_scores = kfold_template.run_kfold(data, target, 4, machine, 0, 0)
+	r2_scores = r2_scores[0]
+	r2_score = numpy.mean(r2_scores)
+	print("n_neighbors: ", i)
+	print("r2_score: ", r2_score)
+
+
+
+
+
+	
 
