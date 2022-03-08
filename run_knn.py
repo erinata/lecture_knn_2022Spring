@@ -1,5 +1,9 @@
 import pandas
+import kfold_template
 
+import numpy
+
+from sklearn.neighbors import KNeighborsRegressor
 
 dataset = pandas.read_csv("abalone.data", header=None)
 
@@ -14,5 +18,13 @@ data = dataset.iloc[:,0:7].values
 
 print(target)
 print(data)
+
+
+machine = KNeighborsRegressor(n_neighbors=3)
+r2_scores = kfold_template.run_kfold(data, target, 4, machine, 0, 0)
+r2_scores = r2_scores[0]
+r2_score = numpy.mean(r2_scores)
+print(r2_score)
+
 
 
